@@ -1,0 +1,5 @@
+{
+  "name": "Cotizador MVP - React",
+  "description": "A professional quoting tool (Cotizador) featuring customizable layouts, ITBMS calculation, and PDF export capabilities. Includes Gemini AI for text enhancement.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cotizador Pro MVP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              brand: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Print specific styles to ensure background colors render and layout is A4 */
+      @media print {
+        /* Force A4 and remove borders to stretch content edge-to-edge */
+        @page { margin: 0; size: A4 portrait; }
+        body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white; margin: 0; padding: 0; }
+        /* Hide the editor area and preview area */
+        #no-print-area { display: none !important; }
+        .flex-1 { display: none !important; }
+
+        /* Show the hidden print area with all pages */
+        #print-all-pages { display: block !important; }
+
+        /* Each page should be A4 */
+        #print-all-pages > div {
+          display: block !important;
+          page-break-after: always !important;
+          width: 210mm !important;
+          height: 297mm !important;
+          overflow: hidden !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Constrain the print area to an A4 box and prevent overflow */
+        #print-area, .a4-paper {
+          display: block !important;
+          width: 210mm !important;
+          height: 297mm !important;
+          max-width: 210mm !important;
+          max-height: 297mm !important;
+          margin: 0 auto !important;
+          overflow: hidden !important;
+          transform: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          box-sizing: border-box !important;
+          background: white !important;
+        }
+
+        /* Ensure images and backgrounds are visible in print */
+        #print-area img, .a4-paper img {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          opacity: 1 !important;
+        }
+
+        /* Make long words wrap and avoid flex expansion issues */
+        .a4-paper, .a4-paper * {
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
+        }
+      }
+      .a4-paper {
+        width: 210mm;
+        min-height: 297mm;
+        background: white;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-slate-100 text-slate-800">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
