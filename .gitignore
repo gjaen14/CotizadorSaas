@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Variables de entorno (API keys, secrets)
+.env
+.env.local
+.env*.local
+
+# Archivos binarios / referencia
+*.pdf
+assets/
+
+# Archivos internos del agente / guías
+agent.md
+metadata.json
+ELEMENT_POSITIONING_GUIDE.md
+PAGINATION_GUIDE.md
+TAILWIND_SIZING_GUIDE.md
+.github/skills/
