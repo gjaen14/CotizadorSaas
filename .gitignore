@@ -31,6 +31,7 @@ dist-ssr
 # Archivos binarios / referencia
 *.pdf
 assets/
+!assets/CotizacionStandar.png
 
 # Archivos internos del agente / guías
 agent.md
