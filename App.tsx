@@ -39,7 +39,7 @@ const INITIAL_STATE: AppState = {
     eventLocation: '',
     paymentInfo: 'ACH:\nBanco General\nCta. de Ahorros: 0423017582417\nYAPPY: 6074-1047',
     notes: 'CONDICIONES: Cotización válida por 15 días. Se debe abonar el 50% para reserva de fecha, y se cancela 2 días antes del evento. NO HACEMOS DEVOLUCIONES, ni cambios de productos elegidos luego de aprobada la cotización. Se podrá re agendar fecha según disponibilidad. La duración del alquiler es de 24 horas.',
-    backgroundImageUrl: '/assets/CotizacionStandar.png',
+    backgroundImageUrl: 'https://deisymavares.com/CotizacionStandar.png',
     backgroundOpacity: 100,
     layoutTopMargin: 300,
     hideHeader: false,
