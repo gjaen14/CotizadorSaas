@@ -7,18 +7,18 @@ import { Printer, Plus, Settings, User, Building, Palette, LayoutTemplate, Image
 
 const INITIAL_STATE: AppState = {
   items: [
-    { id: '1', description: 'Conferencias de Impacto', price: 500.00, quantity: 1, hasTax: true, isVisible: true }
+    { id: '1', description: 'Alquiler de Sillas Tiffany Doradas', price: 3.50, quantity: 100, hasTax: true, isVisible: true }
   ],
   company: {
-    name: 'Deisy Mavares',
-    email: 'info@deisymavares.com',
+    name: 'Pretty Events',
+    email: 'prettyeventspma@gmail.com',
     phone: '',
     address: '',
     slogan: '',
     ruc: '',
     contactPerson: '',
-    website: 'www.deisymavares.com',
-    instagram: '@DeisyMavares',
+    website: 'www.peventspma.com',
+    instagram: '@prettyeventspa',
     logoUrl: '' // Placeholder compatible style
   },
   client: {
@@ -32,29 +32,30 @@ const INITIAL_STATE: AppState = {
     taxName: 'ITBMS',
     taxRate: 0.07,
     currencySymbol: 'B/.',
-    themeColor: '#2A221E', // Color-Brand-Dark from UI/UX Forensic Invoice skill
+    themeColor: '#B39260', // Gold Primary from UI/UX Forensic Invoice skill
     quoteNumber: '2431 - 25',
     date: new Date().toISOString().split('T')[0],
     eventDate: '',
     eventLocation: '',
     paymentInfo: 'ACH:\nBanco General\nCta. de Ahorros: 0423017582417\nYAPPY: 6074-1047',
     notes: 'CONDICIONES: Cotización válida por 15 días. Se debe abonar el 50% para reserva de fecha, y se cancela 2 días antes del evento. NO HACEMOS DEVOLUCIONES, ni cambios de productos elegidos luego de aprobada la cotización. Se podrá re agendar fecha según disponibilidad. La duración del alquiler es de 24 horas.',
-    backgroundImageUrl: 'https://deisymavares.com/CotizacionStandar.png',
+    backgroundImageUrl: 'https://jaendev.soarity.co/cotizador/img/Plantilla_PrettyEvents.png',
     backgroundOpacity: 100,
     layoutTopMargin: 300,
     hideHeader: false,
     elementPositions: {
       titleHeaderGroup: {
-        position: { x: 480, y: 150 },
+        position: { x: 420, y: 160 },
         style: { fontSize: 12, color: '#ffffff' }
       },
-      clientInfo: { x: 40, y: 175 },
+      clientInfo: { x: 40, y: 205 },
+      companyInfo: { x: 480, y: 240 },   // Gran Total pill
       logo: { x: 350, y: 40 },
-      itemsTable: { x: 40, y: 330 },
-      paymentSection: { x: 0, y: 715 },  // Gold bg, starts from left edge
-      totalsBox: { x: 460, y: 750 },     // Beige box, right side
-      notesSection: { x: 40, y: 870 },
-      footerContact: { x: 100, y: 940 }    // Full width beige footer
+      itemsTable: { x: 40, y: 365 },
+      paymentSection: { x: 0, y: 785 },  // Gold bg, starts from left edge
+      totalsBox: { x: 500, y: 740 },     // Beige box, right side
+      notesSection: { x: 40, y: 920 },
+      footerContact: { x: 150, y: 960 }    // Full width beige footer
     }
   }
 };
@@ -78,8 +79,8 @@ export default function App() {
     return () => mq.removeEventListener('change', handleChange as any);
   }, []);
 
-  // Pagination: 8 items per page
-  const ITEMS_PER_PAGE = 8;
+  // Pagination: 7 items per page
+  const ITEMS_PER_PAGE = 7;
   const totalPages = Math.max(1, Math.ceil(state.items.length / ITEMS_PER_PAGE));
   const getPageItems = (pageIndex: number) => {
     const start = pageIndex * ITEMS_PER_PAGE;
@@ -282,26 +283,15 @@ export default function App() {
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">RUC / ID</label>
-                  <input type="text" className="w-full p-2 border rounded" value={state.client.idNumber} onChange={e => updateClient('idNumber', e.target.value)} placeholder="Ej. 8-123-456" />
-                </div>
-              </div>
-
-              {/* Datos del Evento */}
-              <div className="bg-slate-100 p-4 rounded-lg space-y-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Calendar size={16} className="text-slate-500" />
-                  <span className="text-sm font-medium">Datos del Evento</span>
+                  <input type="text" className="w-full p-2 border rounded" value={state.client.idNumber} onChange={e => updateClient('idNumber', e.target.value)} />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-500 mb-1">Fecha del Evento</label>
-                  <input type="date" className="w-full p-2 border rounded" value={state.settings.eventDate || ''} onChange={e => updateSettings('eventDate', e.target.value)} />
+                  <label className="block text-xs font-medium text-slate-500 mb-1">Teléfono</label>
+                  <input type="text" className="w-full p-2 border rounded" value={state.client.phone} onChange={e => updateClient('phone', e.target.value)} />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-500 mb-1">Lugar del Evento</label>
-                  <div className="flex items-center gap-1">
-                    <MapPin size={14} className="text-slate-400" />
-                    <input type="text" className="w-full p-2 border rounded" value={state.settings.eventLocation || ''} onChange={e => updateSettings('eventLocation', e.target.value)} />
-                  </div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1">Email</label>
+                  <input type="email" className="w-full p-2 border rounded" value={state.client.email} onChange={e => updateClient('email', e.target.value)} />
                 </div>
               </div>
             </div>
@@ -375,7 +365,24 @@ export default function App() {
                 </div>
               )}
 
-
+              {/* Event Details */}
+              <div className="bg-slate-100 p-4 rounded-lg space-y-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar size={16} className="text-slate-500" />
+                  <span className="text-sm font-medium">Datos del Evento</span>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1">Fecha del Evento</label>
+                  <input type="date" className="w-full p-2 border rounded" value={state.settings.eventDate || ''} onChange={e => updateSettings('eventDate', e.target.value)} />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1">Lugar del Evento</label>
+                  <div className="flex items-center gap-1">
+                    <MapPin size={14} className="text-slate-400" />
+                    <input type="text" className="w-full p-2 border rounded" value={state.settings.eventLocation || ''} onChange={e => updateSettings('eventLocation', e.target.value)} />
+                  </div>
+                </div>
+              </div>
 
               {/* Payment Info */}
               <div className="bg-slate-100 p-4 rounded-lg space-y-3">
@@ -399,7 +406,7 @@ export default function App() {
                   <span className="text-sm font-medium">Estilo</span>
                 </div>
                 <div className="grid grid-cols-5 gap-2 mb-4">
-                  {['#2A221E', '#B39260', '#2563eb', '#dc2626', '#000000'].map(color => (
+                  {['#B39260', '#2563eb', '#dc2626', '#16a34a', '#000000'].map(color => (
                     <button
                       key={color}
                       onClick={() => updateSettings('themeColor', color)}

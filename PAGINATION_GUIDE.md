@@ -2,7 +2,7 @@
 
 ## Resumen
 
-Tu cotizador ahora soporta **múltiples páginas** automáticamente. Cada página puede contener un máximo de **8 items**, y los **totales + métodos de pago** aparecen solo en la **última página**.
+Tu cotizador ahora soporta **múltiples páginas** automáticamente. Cada página puede contener un máximo de **7 items**, y los **totales + métodos de pago** aparecen solo en la **última página**.
 
 ---
 
@@ -12,16 +12,16 @@ Tu cotizador ahora soporta **múltiples páginas** automáticamente. Cada págin
 
 **Cálculo de páginas:**
 ```typescript
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 7;
 const totalPages = Math.max(1, Math.ceil(state.items.length / ITEMS_PER_PAGE));
 ```
 
 | Items | Páginas |
 |-------|---------|
-| 1-8   | 1       |
-| 9-16  | 2       |
-| 17-24 | 3       |
-| 25+   | 4+      |
+| 1-7   | 1       |
+| 8-14  | 2       |
+| 15-21 | 3       |
+| 22+   | 4+      |
 
 ### 2. Navegación entre Páginas (Editor - Lado Izquierdo)
 
